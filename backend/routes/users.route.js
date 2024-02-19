@@ -1,5 +1,5 @@
 const express = require("express");
-const { getUsers, createUser } = require("../controllers/users.controller");
+const { getUsers, createUser, createTokenFromJson } = require("../controllers/users.controller");
 const router = express.Router();
 
 //GET: On récupère tous les users
@@ -9,6 +9,9 @@ router.get('/', getUsers)
 router.get('/:id', (req, res) => {
   res.json({ message: 'Voici un User par son ID' })
 })
+
+//GET: JSON WEB TOKEN
+router.post('/signin', createTokenFromJson)
 
 //POST: Création d'un nouvel user
 router.post('/', createUser)

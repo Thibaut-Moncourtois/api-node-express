@@ -1,4 +1,5 @@
 const connection = require('../database/db')
+const jwt = require('jsonwebtoken')
 
 //On récupère tous les users
 module.exports.getUsers = (req, res) => {
@@ -68,4 +69,16 @@ module.exports.deleteUserById = (req, res ) => {
 
     res.json({ message: 'Utilisateur supprimé!', results})
   })
+}
+
+// Création d'un JWT 
+module.exports.createTokenFromJson = (jsonData, secretKey, options = {}) => {
+  try {
+    const secretKey = "laSecretKey"
+    const token = jwt.sign(jsonData, secretKey, options)
+    return token
+  } catch (error) {
+    console.log('Y a une petite erreur.')
+    return null
+  }
 }
