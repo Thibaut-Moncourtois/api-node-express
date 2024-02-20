@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -5,10 +6,10 @@ const app = express();
 app.use(express.json());
 
 const users = {}; // Ceci est un exemple, dans une application réelle, vous stockeriez les utilisateurs dans une base de données
-const secretKey = 'secretKey'; // Ne jamais exposer votre clé secrète comme ça dans une application réelle. Utilisez les variables d'environnement.
+const secretKey = process.env.SECRET_KEY;
 
 app.post('/register', async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, email } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
   users[username] = hashedPassword;
   res.status(201).send('User registered');
