@@ -3,9 +3,10 @@ const bodyParser = require('body-parser');  // Importation du module body-parser
 const app = express()
 const port = 3001
 
+app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.render('index', { tilte: 'Accueil'})
 })
 
 app.use(bodyParser.urlencoded({ extended: false }));
