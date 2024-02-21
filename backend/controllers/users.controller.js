@@ -1,5 +1,4 @@
 const connection = require('../database/db')
-const jwt = require('jsonwebtoken')
 
 //On récupère tous les users
 module.exports.getUsers = (req, res) => {
